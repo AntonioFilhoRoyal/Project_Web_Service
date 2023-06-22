@@ -9,13 +9,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="tb_user")
+		// MODELO DE USUARIO
+
+@Entity // ENTIDADE. PASSANDO ESSA CLSS PARA UMA ENTIDADE, FAZENDO ELA FICA MAPEADA E OBSERVADA
+@Table(name="tb_user") // DEFINIDO NOME DA TABELA NO BANCO DE DADOS
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // GERAÇÃO DE ID PARA IDENTIFICAÇÃO
 	private Long id;
 	private String name;
 	private String emaill;
