@@ -26,6 +26,11 @@ public class UserService {
 		// TERMO IMPLEMENTADO DESDO JAVA 8
 		Optional<User> optionalRepository = repository.findById(id);
 		return optionalRepository.get();
-	// RETORNANDO UM OBJETO PELO ID	
+	// RETORNANDO UM OBJETO PELO ID
+		
+	}
+	
+	public User insert(User user) {
+		return repository.save(user);
 	}
 }

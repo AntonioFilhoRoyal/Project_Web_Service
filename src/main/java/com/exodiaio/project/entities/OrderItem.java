@@ -47,6 +47,11 @@ public class OrderItem {
 		this.price = price;
 	}
 	
+	
+	public Double getSubTotal() {
+		return price * quntity;
+	}
+
 	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();

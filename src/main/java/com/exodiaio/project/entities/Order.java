@@ -46,6 +46,8 @@ public class Order implements Serializable{
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	private Double total;
+	
 	public Order() {
 		super();
 	}
@@ -82,6 +84,16 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
+	
+	public Double getTotal() {
+		Double sum = 0.0;
+		for(OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		
+		return sum;
+	}
+
 	// O METODO VALUEOF DENTRO DO ENUM PUXA O VALOR DO CODIGO DE CADA ENUM
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
