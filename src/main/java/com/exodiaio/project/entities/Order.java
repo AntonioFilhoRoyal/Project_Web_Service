@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
@@ -33,14 +35,20 @@ public class Order implements Serializable{
 							// COM O NOME CLIENT_ID
 	private User client; // INSTANCIANDO UM TIPO USUARIO COM NOME CLIENT
 	
+	
+	private Integer orderStatus;
+	
+	
+	
 	public Order() {
 		super();
 	}
 
-	public Order(Long id, Instant moment, User client) {
+	public Order(Long id, Instant moment, OrderStatus orderStatus,User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
+		setOrderStatus(orderStatus);
 		this.client = client;
 	}
 
@@ -68,6 +76,17 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
+	
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		if(orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
