@@ -25,7 +25,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // GERAÇÃO DE ID PARA IDENTIFICAÇÃO
 	private Long id;
 	private String name;
-	private String emaill;
+	private String email;
 	private String phone;
 	private String password;
 	
@@ -40,11 +40,11 @@ public class User implements Serializable{
 	
 	}
 
-	public User(Long id, String name, String emaill, String phone, String password) {
+	public User(Long id, String name, String email, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.emaill = emaill;
+		this.email = email;
 		this.phone = phone;
 		this.password = password;
 	}
@@ -65,12 +65,12 @@ public class User implements Serializable{
 		this.name = name;
 	}
 
-	public String getEmaill() {
-		return emaill;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmaill(String emaill) {
-		this.emaill = emaill;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhone() {
