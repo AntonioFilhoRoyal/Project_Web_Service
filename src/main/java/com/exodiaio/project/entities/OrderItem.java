@@ -25,7 +25,7 @@ public class OrderItem {
 	
 	public OrderItem(Order order, Product product, Integer quntity, Double price) {
 		super();
-		id.setOrder(order);
+		id.setOrder(order); // PUXA A ORDER DENTRO DA ORDERITEMPK, O MESMO COM O PRODUCT
 		id.setProduct(product);
 		this.quntity = quntity;
 		this.price = price;

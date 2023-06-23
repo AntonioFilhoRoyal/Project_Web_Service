@@ -37,7 +37,7 @@ public class Product implements Serializable{
 	inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>(); // LISTA DE CATEGORIAS
 	
-	@OneToMany(mappedBy = "id.product")
+	@OneToMany(mappedBy = "id.product") // PUXA O PRODUCT DENTRO DO ID QUE PUXA A ORDERITEM
 	private Set<OrderItem> items = new HashSet<>();
 	
 	public Product() {

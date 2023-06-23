@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,12 +37,14 @@ public class Order implements Serializable{
 							// COM O NOME CLIENT_ID
 	private User client; // INSTANCIANDO UM TIPO USUARIO COM NOME CLIENT
 	
+	// MAPEANDO OS ITENS DE ORDERITEMS PELO: ID QUE ENTRA DENTRO DA CLASS ORDERITEMPK, ORDER QUE PUXA A ORDER(PEDIDO)
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 	
 	private Integer orderStatus;
 	
-	
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	private Payment payment;
 	
 	public Order() {
 		super();
@@ -78,11 +82,12 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
-	
+	// O METODO VALUEOF DENTRO DO ENUM PUXA O VALOR DO CODIGO DE CADA ENUM
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
 	}
 
+		// PARAMETRO ORDERSTATUS DIFERENTE DE NULL IRA PEGA O CODE DO STATUS
 	public void setOrderStatus(OrderStatus orderStatus) {
 		if(orderStatus != null) {
 			this.orderStatus = orderStatus.getCode();
@@ -91,6 +96,15 @@ public class Order implements Serializable{
 	
 	public Set<OrderItem> getOrderItem(){
 		return items;
+	}
+
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	@Override

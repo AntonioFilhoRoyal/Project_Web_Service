@@ -12,6 +12,7 @@ import com.exodiaio.project.entities.Category;
 import com.exodiaio.project.entities.Order;
 import com.exodiaio.project.entities.OrderItem;
 import com.exodiaio.project.entities.OrderStatus;
+import com.exodiaio.project.entities.Payment;
 import com.exodiaio.project.entities.Product;
 import com.exodiaio.project.entities.User;
 import com.exodiaio.project.repositories.CategoryRepository;
@@ -84,6 +85,11 @@ public class TestConfig implements CommandLineRunner{
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 	
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 		
 	}
 	
