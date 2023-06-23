@@ -2,12 +2,11 @@ package com.exodiaio.project.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,6 +35,8 @@ public class Order implements Serializable{
 							// COM O NOME CLIENT_ID
 	private User client; // INSTANCIANDO UM TIPO USUARIO COM NOME CLIENT
 	
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
 	
 	private Integer orderStatus;
 	
@@ -85,6 +87,10 @@ public class Order implements Serializable{
 		if(orderStatus != null) {
 			this.orderStatus = orderStatus.getCode();
 		}
+	}
+	
+	public Set<OrderItem> getOrderItem(){
+		return items;
 	}
 
 	@Override

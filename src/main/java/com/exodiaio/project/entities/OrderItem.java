@@ -3,6 +3,7 @@ package com.exodiaio.project.entities;
 import java.util.Objects;
 
 import com.exodiaio.project.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
 public class OrderItem {
 	
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id = new OrderItemPK();
 	private Integer quntity;
 	private Double price;
 	
@@ -46,6 +47,7 @@ public class OrderItem {
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
