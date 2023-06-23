@@ -29,8 +29,11 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "client")
+	@JsonIgnore // IGNORANDO A CHAMADA DE UMA ORDEM
+	// MOTIVO: SEM O JSONIGNORE, AO STARTA A APLICAÇÃO, A CHAMADA DE UM PEDIDO CHAMA O CLIENTE É O CLIENTE CHAMA O PEDIDO
+				// ENTÃO FICA NESSE LOOP, COM O JSONIGNORE ISSO NÃO ACONTECE
+// UM PARA MUITOS	
+	@OneToMany(mappedBy = "client") // MAPEANDO A VARIAVEL CLIENT DENTRO DA CLASS ORDER
 	private List<Order> orders = new ArrayList<>();
 
 	public User() {
