@@ -110,7 +110,7 @@ public class Order implements Serializable{
 		return items;
 	}
 
-	
+	// INSTANCIANDO PAYMENT
 	public Payment getPayment() {
 		return payment;
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.exodiaio.project.entities.User;
 import com.exodiaio.project.repositories.UserRepository;
+import com.exodiaio.project.service.exceptions.ResourceNotFoundException;
 
 // DECLARANDO QUE A CLASS É UMA CLASS DE SERVIÇOS
 @Service
@@ -25,7 +26,7 @@ public class UserService {
 	public User findById(Long id) {
 		// TERMO IMPLEMENTADO DESDO JAVA 8
 		Optional<User> optionalRepository = repository.findById(id);
-		return optionalRepository.get();
+		return optionalRepository.orElseThrow(() -> new ResourceNotFoundException(id));
 	// RETORNANDO UM OBJETO PELO ID
 		
 	}
